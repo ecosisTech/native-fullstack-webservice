@@ -1,7 +1,6 @@
 export default eventHandler(async (event) => {
-  const host = getRequestHost(event)
-  if (host === 'localhost:3000') {
-    sendProxy(event, 'https://google.com')
-  }
-  console.log(host);
+  const host = await getRequestHost(event)
+  await sendProxy(event, 'http://localhost:3000', {
+    // cookieDomainRewrite: 'http://ecosis.tech/'
+  })
 })
